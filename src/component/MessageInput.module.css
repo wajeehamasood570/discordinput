@@ -70,7 +70,7 @@
     width: auto; /* Adjust based on your design */
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
     .inputContainer{
         width: 100%;
         padding: 0%;
