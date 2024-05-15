@@ -69,3 +69,9 @@
     border: 1px solid #ccc; /* Optional: for better visibility */
     width: auto; /* Adjust based on your design */
 }
+
+@media screen and (max-width: 500px) {
+    .inputContainer{
+        width: fit-content;
+    }
+  }
