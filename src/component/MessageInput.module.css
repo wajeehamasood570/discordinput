@@ -73,5 +73,9 @@
 @media screen and (max-width: 500px) {
     .inputContainer{
         width: fit-content;
+        padding: 0%;
+    }
+    .iconButton{
+        font-size: 12px;
     }
   }
