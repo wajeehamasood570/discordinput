@@ -74,6 +74,7 @@
     .inputContainer{
         width: 100%;
         padding: 0%;
+        display: block;
     }
     .iconButton{
         font-size: 12px;
