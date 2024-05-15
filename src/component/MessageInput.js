@@ -17,13 +17,7 @@ const MessageInput = () => {
         setMessage(event.target.value);
     };
 
-    const handleSend = () => {
-        console.log("Message sent:", message);
-        setMessage('');
-        setFile(null);
-        setFilePreviewUrl('');
-        setShowPicker(false); // Hide emoji picker on send
-    };
+  
 
     const handleAttachment = () => {
         fileInputRef.current.click();
@@ -80,6 +74,16 @@ const MessageInput = () => {
         console.log("GIF added with preview URL:", gif.preview.url);
     };
     
+
+
+
+    const handleSend = () => {
+        console.log("Message sent:", message);
+        setMessage('');
+        setFile(null);
+        setFilePreviewUrl('');
+        setShowPicker(false); // Hide emoji picker on send
+    };
     
 
 
