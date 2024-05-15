@@ -1,0 +1,71 @@
+.inputContainer {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background-color: rgb(46, 48, 53);
+    position: absolute;
+    bottom: 0;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.inputField {
+    background-color: rgb(46, 48, 53);
+    color: #DBDEE1;
+
+    flex: 1;
+    margin: 0 8px;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+}
+
+.iconButton {
+    background: none;
+    border: none;
+    color: #DBDEE1;
+    font-size: 24px;
+    cursor: pointer;   
+     padding: 10px;
+
+}
+
+.sendButton {
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.messageInputContainer  {
+    /* border: 1px solid #ccc; */
+    position: absolute;
+    bottom: 50px;
+    right: 0;
+  }
+  
+
+  .emojiPicker {
+    position: absolute;
+    bottom: 60px; /* Adjust this value based on your needs, e.g., the height of the input box */
+    right: 8px;
+    /* top: -30; */
+    z-index: 1000; /* Make sure it's high enough to float above other content */
+    background: white; /* Optional: for better visibility */
+    border: 1px solid #ccc; /* Optional: for better visibility */
+    width: auto; /* Adjust based on your design */
+}
+
+.gifPicker {
+    position: absolute;
+    bottom: 60px; /* Adjust this value based on your needs, e.g., the height of the input box */
+    right: 28px;
+    /* top: -30; */
+    z-index: 1000; /* Make sure it's high enough to float above other content */
+    background: white; /* Optional: for better visibility */
+    border: 1px solid #ccc; /* Optional: for better visibility */
+    width: auto; /* Adjust based on your design */
+}
