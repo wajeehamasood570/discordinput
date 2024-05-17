@@ -12,12 +12,17 @@ const MessageInput = () => {
     const [showPicker, setShowPicker] = useState(false);
     const [showGifPicker, setShowGifPicker] = useState(false);
     const fileInputRef = useRef(null);
+    const [data, setData] = useState({
+        channels: ["ChannelOne", "ChannelTwo", "ChannelThree", "ChannelFour", "ChannelFive"],
+        usernames: ["UserOne", "UserTwo", "UserThree", "UserFour", "UserFive"]
+    });
+
 
     const handleInputChange = (event) => {
         setMessage(event.target.value);
     };
 
-  
+
 
     const handleAttachment = () => {
         fileInputRef.current.click();
@@ -66,16 +71,55 @@ const MessageInput = () => {
             console.error('Invalid GIF data:', gif);
             return;  // Exit the function if the data isn't as expected
         }
-    
+
         // Construct the HTML for the GIF image using the preview URL
         const imgTag = `<img src="${gif.preview.url}" alt="${gif.description || 'GIF'}" style="width: 100px; height: auto;" />`;
         setMessage(prevMessage => `${prevMessage} ${imgTag}`);
         setShowGifPicker(false);
         console.log("GIF added with preview URL:", gif.preview.url);
     };
+
+
+
+    const renderSuggestions = () => {
+        // Regex to match both @ for users and # for channels
+        const mentionRegex = /([@#])(\w*)$/;
+        const match = message.match(mentionRegex);
+        if (!match) return null;
+    
+        const trigger = match[1];  // '@' or '#'
+        const prefix = match[2];
+        let suggestions = [];
+    
+        if (trigger === '@') {
+            suggestions = data.usernames.filter(name => name.toLowerCase().startsWith(prefix.toLowerCase()));
+        } else if (trigger === '#') {
+            suggestions = data.channels.filter(name => name.toLowerCase().startsWith(prefix.toLowerCase()));
+        }
+    
+        if (suggestions.length === 0) return null;
+    
+        return (
+            <ul className={styles.mentionPicker}>
+                <h5 style={{ color: "grey", padding: "12px" }}>
+                    {trigger === '@' ? "Members" : "Channels"}
+                </h5>
+                {suggestions.map((suggestion, index) => (
+                    <li key={index} onClick={() => completeMention(suggestion, trigger)}>
+                        {suggestion}
+                    </li>
+                ))}
+            </ul>
+        );
+    };
     
 
 
+    const completeMention = (suggestion, trigger) => {
+        const mentionRegex = /([@#])(\w*)$/;
+        setMessage(message.replace(mentionRegex, `${trigger}${suggestion} `));
+    };
+    
 
     const handleSend = () => {
         console.log("Message sent:", message);
@@ -84,7 +128,7 @@ const MessageInput = () => {
         setFilePreviewUrl('');
         setShowPicker(false); // Hide emoji picker on send
     };
-    
+
 
 
 
@@ -111,6 +155,8 @@ const MessageInput = () => {
                 onChange={handleInputChange}
 
             />
+
+            {renderSuggestions()}
 
 
 
