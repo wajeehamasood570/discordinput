@@ -7,14 +7,14 @@ import GifPicker from 'gif-picker-react';
 
 const MessageInput = () => {
     const [message, setMessage] = useState('');
-    const [file, setFile] = useState(null); // State to store the file object
+    const [file, setFile] = useState(''); // State to store the file object
     const [filePreviewUrl, setFilePreviewUrl] = useState(''); // State to store the file preview URL
     const [showPicker, setShowPicker] = useState(false);
     const [showGifPicker, setShowGifPicker] = useState(false);
     const fileInputRef = useRef(null);
     const [data, setData] = useState({
-        channels: ["ChannelOne", "ChannelTwo", "ChannelThree", "ChannelFour", "ChannelFive"],
-        usernames: ["UserOne", "UserTwo", "UserThree", "UserFour", "UserFive"]
+        channels: ["ChannelOne", "ChannelTwo", "Channel_Three", "ChannelFour", "ChannelFive"],
+        usernames: ["UserOne", "UserTwo", "UserThree", "_UserFour", "UserFive"]
     });
 
 
@@ -92,9 +92,9 @@ const MessageInput = () => {
         let suggestions = [];
     
         if (trigger === '@') {
-            suggestions = data.usernames.filter(name => name.toLowerCase().startsWith(prefix.toLowerCase()));
+            suggestions = data.usernames.filter(name => name.toLowerCase());
         } else if (trigger === '#') {
-            suggestions = data.channels.filter(name => name.toLowerCase().startsWith(prefix.toLowerCase()));
+            suggestions = data.channels.filter(name => name.toLowerCase());
         }
     
         if (suggestions.length === 0) return null;
@@ -124,9 +124,11 @@ const MessageInput = () => {
     const handleSend = () => {
         console.log("Message sent:", message);
         setMessage('');
-        setFile(null);
+        setFile('');
         setFilePreviewUrl('');
         setShowPicker(false); // Hide emoji picker on send
+        fileInputRef.current.value = null;
+
     };
 
 
